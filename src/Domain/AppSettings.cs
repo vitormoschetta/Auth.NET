@@ -4,23 +4,26 @@ namespace Domain
 {
     public class AppSettings
     {
+        // DB
+        public static string ConnectionString { get; private set; }      
+
         public AppSettings(string con)
         {
-            if (connectionString != null)
+            if (ConnectionString != null)
                 return;
                 
-            connectionString = con;
-        }        
+            ConnectionString = con;
+        }                
+        
 
-        public static string connectionString { get; private set; }      
+        // Email 
+        public static string EmailFrom = "vitormoschetta.suporte@gmail.com";
+        public static string EmailPassword = "auth2021";
         
 
         // Config JWT
         public static string Secret = "fedaf7d8863b48e197b9287d492b708e";
-        public static int ExpirationHours = 2;
-
-        // public static List<string> Dominios = new List<string>() { "http://localhost:4200" };
-        // public static List<string> Emissores = new List<string>() { "SEDUC" };
+        public static int ExpirationHours = 2;        
         
     }
 }

@@ -30,4 +30,14 @@ https://localhost:5001
 
 Para acessar a documentação da API:  
 https://localhost:5001/index.html
+<br>
+
+
+## Configuração de Email 
+As configurações de remetente de e-mail estão localizadas no diretório abaixo:
+```
+src
+   Domain
+       AppSettings.cs
+```
 
