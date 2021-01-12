@@ -6,12 +6,15 @@ API NET Core com autenticação JWT, validação de e-mail e recuperação de se
 
 ## Início Rápido:
 
-Necessário ter o SQLServer LocalDB instalado.  [Link](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/sql-server-express-localdb?view=sql-server-ver15)
+Necessário ter o SQLServer LocalDB instalado.  
+[Link download](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/sql-server-express-localdb?view=sql-server-ver15)  
 
 Se ainda não possui o .NET Core SDK instalado, segue o link de suporte a instalação:   
-<https://docs.microsoft.com/pt-br/dotnet/core/install/windows?tabs=netcore31>
+[Link download](https://docs.microsoft.com/pt-br/dotnet/core/install/windows?tabs=netcore31)  
 
 Obs: instale a versão 3.1
+<br>
+
 
 No Prompt de comando, dentro da pasta **Api**, executar os seguintes comandos:
 ```
