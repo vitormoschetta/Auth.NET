@@ -17,9 +17,9 @@ namespace Api.Configurations
             var connectionString = string.Empty;
 
             if (Enviroment.EnvironmentName == "Development")
-                connectionString = Configuration.GetSection("SqlServerDev").GetSection("ConnectionString").Value;
+                connectionString = Configuration.GetConnectionString("SqlServerDev");
             else
-                connectionString = Configuration.GetSection("SqlServerProd").GetSection("ConnectionString").Value;
+                connectionString = Configuration.GetConnectionString("SqlServerProd");
 
             Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(connectionString));
