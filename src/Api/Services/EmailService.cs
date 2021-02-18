@@ -15,18 +15,18 @@ namespace Api.Services
         string PasswordEnv;
         public EmailService(IWebHostEnvironment Enviroment, IConfiguration Configuration)
         {
+            EmailEnv = Configuration["Email"];
+            PasswordEnv = Configuration["EmailPassword"];
             _Enviroment = Enviroment;
-            _Configuration = Configuration;
-            EmailEnv = Configuration.GetSection("Email").Value;
-            PasswordEnv = Configuration.GetSection("EmailPassword").Value;
+            _Configuration = Configuration;            
         }
 
         public void Send(string username, string email, string emailToken)
         {
             if (_Enviroment.EnvironmentName == "Development")
-                BaseUrlEnv = _Configuration.GetSection("BaseUrlDev").Value;
+                BaseUrlEnv = _Configuration["BaseUrlDev"];
             else
-                BaseUrlEnv = _Configuration.GetSection("BaseUrlProd").Value;
+                BaseUrlEnv = _Configuration["BaseUrlProd"];
 
             var message = new MimeMessage();
             message.From.Add(new MailboxAddress("Auth.NET", EmailEnv));

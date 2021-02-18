@@ -21,8 +21,7 @@ namespace api
 
         
         public void ConfigureServices(IServiceCollection services)
-        {
-            var teste = Configuration.GetSection("Email").Value;
+        {            
             services.AddHttpContextAccessor();                    
             services.AddControllers();
             services.AddScoped<TokenService>();                

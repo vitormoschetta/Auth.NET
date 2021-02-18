@@ -26,7 +26,7 @@ namespace Api.Configurations
 
 
             // Iniciliza classe de configuração da camada Domain
-            var appSettings = new AppSettings(connectionString);
+            new AppSettings(connectionString);
         }
     }
 }
