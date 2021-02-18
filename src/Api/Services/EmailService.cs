@@ -9,29 +9,33 @@ namespace Api.Services
     public class EmailService
     {
         IWebHostEnvironment _Enviroment;
-        IConfiguration _Configuration;
-        string baseUrl;
+        IConfiguration _Configuration;        
+        string BaseUrlEnv;
+        string EmailEnv;
+        string PasswordEnv;
         public EmailService(IWebHostEnvironment Enviroment, IConfiguration Configuration)
         {
             _Enviroment = Enviroment;
             _Configuration = Configuration;
+            EmailEnv = Configuration.GetSection("Email").Value;
+            PasswordEnv = Configuration.GetSection("EmailPassword").Value;
         }
 
         public void Send(string username, string email, string emailToken)
         {
             if (_Enviroment.EnvironmentName == "Development")
-                baseUrl = _Configuration.GetSection("BaseUrlDev").Value;
+                BaseUrlEnv = _Configuration.GetSection("BaseUrlDev").Value;
             else
-                baseUrl = _Configuration.GetSection("BaseUrlProd").Value;
+                BaseUrlEnv = _Configuration.GetSection("BaseUrlProd").Value;
 
             var message = new MimeMessage();
-            message.From.Add(new MailboxAddress("Auth.NET", AppSettings.EmailFrom));
+            message.From.Add(new MailboxAddress("Auth.NET", EmailEnv));
             message.To.Add(new MailboxAddress(username, email));
             message.Subject = "Cadastro de usuário - Auth.NET";
             message.Body = new TextPart("html")
             {
                 Text = "<h3>Clique " +
-                $"<a  href='{baseUrl}/api/Auth/EmailValidate/{emailToken}'>AQUI</a> para validar seu e-mail</h3>"
+                $"<a  href='{BaseUrlEnv}/api/Auth/EmailValidate/{emailToken}'>AQUI</a> para validar seu e-mail</h3>"
             };
 
             using (var client = new SmtpClient())
@@ -40,7 +44,7 @@ namespace Api.Services
 
                 client.Connect("smtp.gmail.com", 587, false);
 
-                client.Authenticate(AppSettings.EmailFrom, AppSettings.EmailPassword);
+                client.Authenticate(EmailEnv, PasswordEnv);
                 client.Send(message);
                 client.Disconnect(true);
             }
@@ -49,7 +53,7 @@ namespace Api.Services
         public void ResetPassword(string username, string email, string randomPassword)
         {
             var message = new MimeMessage();
-            message.From.Add(new MailboxAddress("Auth.NET", AppSettings.EmailFrom));
+            message.From.Add(new MailboxAddress("Auth.NET", EmailEnv));
             message.To.Add(new MailboxAddress(username, email));
             message.Subject = "Redefinição de Senha - Auth.NET";
             message.Body = new TextPart("html")
@@ -64,7 +68,7 @@ namespace Api.Services
 
                 client.Connect("smtp.gmail.com", 587, false);
 
-                client.Authenticate(AppSettings.EmailFrom, AppSettings.EmailPassword);
+                client.Authenticate(EmailEnv, PasswordEnv);
                 client.Send(message);
                 client.Disconnect(true);
             }
