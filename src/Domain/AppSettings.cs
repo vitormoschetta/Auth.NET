@@ -17,8 +17,8 @@ namespace Domain
         
 
         // Email 
-        public static string EmailFrom = "your-email";
-        public static string EmailPassword = "******";
+        public static string EmailFrom = "vitormoschetta.suporte@gmail.com";
+        public static string EmailPassword = "Suporte123*";
         
 
         // Config JWT

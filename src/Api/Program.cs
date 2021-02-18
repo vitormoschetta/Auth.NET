@@ -16,7 +16,8 @@ namespace api
                 var services = scope.ServiceProvider;
 
                 try
-                {                    
+                {              
+                    InitializeData.ApplyMigrations(services);      
                     InitializeData.InitializeUsers(services);                                               
                 }
                 catch
