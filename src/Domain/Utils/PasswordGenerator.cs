@@ -1,6 +1,6 @@
 using System;
 
-namespace Shared
+namespace Domain.Utils
 {
     public class PasswordGenerator
     {

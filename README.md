@@ -6,22 +6,44 @@ API NET Core com autenticação JWT, validação de e-mail e recuperação de se
 <br>
 
 ## Início Rápido:
-Produzindo..
+
+**Docker**: Não existe forma mais simples de executar qualquer aplicação, em qualquer ambiente.
+
+Se ainda não possui o Docker instalado segue o link:
+
+<https://www.docker.com/products/docker-desktop/>
+
+
 
 <br>
 
-## Configuração de Email
-
-Email e senha do remetente é definido no arquivo _appsettings.json_ no seguinte diretório:
+Crie um arquivo na raiz do projeto chamado **email.env** contendo o seguinte conteúdo:
+```
+Email='youremail@email.com'
+EmailPassword='pass123'
 ``` 
-src/Api/appsettings.json
+Informe um email e senha válidos!
+
+**Detalhe**: O email que você informar nesse arquivo precisa estar configurado para aceitar **aplicativos menos seguros**. 
+
+
+
+<br>
+
+Na raiz do projeto executar o comando docker:
+```
+docker-compose up -d
 ```
 
-Atenção: Não é necessário expor esses dados preenchendo diretamente no arquivo. Podemos usar variáveis de ambiente na inicialização da aplicação. 
 
-O seguinte comando inicializa a aplicação passando os valores de email e senha do remetente:
+<br>
 
-```
-dotnet run Email="exemplo@email.com" EmailPassword="pass123"
-```
+Pode demorar alguns minutos, pois se você ainda não tiver as imagens já baixadas na máquina, o Docker tratará de fazer o download.
+
+Ao terminar o processo esta aplicação estará disponivel localmente na seguinte url:
+
+<http://localhost:5000/index.html>
+
+
+
 

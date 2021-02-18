@@ -3,7 +3,7 @@ using Domain.Commands;
 using Domain.Contracts.Handlers;
 using Domain.Contracts.Repositories;
 using Domain.Entities;
-using Shared;
+using Domain.Utils;
 
 namespace Domain.Handlers
 {

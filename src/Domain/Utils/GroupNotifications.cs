@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Shared
+namespace Domain.Utils
 {
     public class GroupNotifications
     {

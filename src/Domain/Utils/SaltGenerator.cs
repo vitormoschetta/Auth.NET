@@ -1,6 +1,6 @@
 using System.Security.Cryptography;
 
-namespace Shared
+namespace Domain.Utils
 {
     public class SaltGenerator
     {

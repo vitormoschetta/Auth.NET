@@ -1,5 +1,5 @@
 using System;
-using Shared;
+using Domain.Utils;
 
 namespace Domain.Entities
 {

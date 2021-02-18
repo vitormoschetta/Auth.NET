@@ -1,7 +1,7 @@
 using System;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 
-namespace Shared
+namespace Domain.Utils
 {
     public class HashGenerator
     {
