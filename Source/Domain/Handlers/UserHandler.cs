@@ -50,7 +50,7 @@ namespace Domain.Handlers
 
             var user = new User(command.Username, command.Email, command.Password);
             if (user.Invalid)
-                return new CommandResult(false, GroupNotifications.Group(user.Notifications));
+                return new CommandResult(false, string.Join(". ", Notifications));
 
             // Add Hash and Salt
             var salt = SaltGenerator.Generate();
@@ -100,7 +100,7 @@ namespace Domain.Handlers
             user.UpdatePassword(command.NewPassword);
 
             if (user.Invalid)
-                return new CommandResult(false, GroupNotifications.Group(user.Notifications));
+                return new CommandResult(false, string.Join(". ", Notifications));
 
             _repository.UpdatePassword(user.Username, hashPassword);
 

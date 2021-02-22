@@ -1,7 +1,10 @@
 version: '3'
 
-services:
+networks: 
+  internal:
+      driver: bridge
 
+services:
   db:
     container_name: sqlserver
     image: mcr.microsoft.com/mssql/server:2019-latest    
@@ -13,7 +16,6 @@ services:
     networks:
       - internal
       
-
   app:
     container_name: app
     image: netcoreapp
@@ -26,6 +28,3 @@ services:
       - internal
    
 
-networks: 
-    internal:
-        driver: bridge
