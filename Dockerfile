@@ -1,6 +1,6 @@
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 
-# Receber variaveis do Compose
+#Variaveis de ambiente
 ARG Email=Email
 ENV Email $Email
 
