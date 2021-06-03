@@ -2,8 +2,6 @@ using System;
 using System.Linq;
 using Domain.Entities;
 using Domain.Utils;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Infra.Context
 {
