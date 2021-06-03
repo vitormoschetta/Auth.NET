@@ -14,7 +14,7 @@ namespace Infra.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {           
-            options.UseSqlServer(AppSettings.ConnectionString);                                                   
+            options.UseSqlServer(AppSettings.GetConnectionString());                                                   
         }
 
         protected override void OnModelCreating(ModelBuilder builder)

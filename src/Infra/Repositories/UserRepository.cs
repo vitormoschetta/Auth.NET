@@ -17,7 +17,7 @@ namespace Infra.Repositories
         {
             _context = context;
         }
-        public string GetConnection() => AppSettings.ConnectionString;
+        public string GetConnection() => AppSettings.GetConnectionString();
         
 
         public User Login(string username, string password)
