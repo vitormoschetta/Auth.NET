@@ -1,5 +1,6 @@
+using Domain.Commands.Handlers;
 using Domain.Contracts.Handlers;
-using Domain.Handlers;
+using Domain.Queries.Handlers;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Api.Configurations
@@ -8,7 +9,8 @@ namespace Api.Configurations
     {
         public static void ConfigureHandlers(this IServiceCollection services)
         {
-            services.AddScoped<IUserHandler, UserHandler>();            
+            services.AddScoped<IUserCommandHandler, UserCommandHandler>(); 
+            services.AddScoped<IUserQueryHandler, UserQueryHandler>();          
         }
     }
 }

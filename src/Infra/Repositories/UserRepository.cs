@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Dapper;
 using Domain;
@@ -109,6 +110,11 @@ namespace Infra.Repositories
             {
                 _dapper.Execute(query);
             }
+        }
+
+        public IEnumerable<User> GetAll()
+        {
+            return _context.User;
         }
     }
 }

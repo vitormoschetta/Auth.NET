@@ -1,6 +1,7 @@
+using System.Collections.Generic;
 using Domain.Commands;
 using Domain.Contracts.Handlers;
-using Domain.Contracts.Repositories;
+using Domain.Queries.Responses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,21 +12,20 @@ namespace Api.Controllers
     [Route("api/[controller]/[action]")]
     public class UserController : ControllerBase
     {
-        private readonly IUserRepository _repository;
-        private readonly IUserHandler _handler;
-        public UserController(IUserRepository repository, IUserHandler handler)         
-        {         
-            _repository = repository;
-            _handler = handler;            
-        }
 
-        
         [HttpPost]
         [Authorize]
-        public CommandResult UpdatePassword(UserUpdatePasswordCommand command)
+        public CommandResult UpdatePassword([FromServices] IUserCommandHandler handler,
+            [FromBody] UserUpdatePasswordCommand command)
         {
-            CommandResult result = _handler.UpdatePassword(command, User.Identity.Name);
-            return result;
+            return handler.UpdatePassword(command, User.Identity.Name);            
+        }
+
+        [HttpGet]
+        [Authorize]
+        public IEnumerable<UserResponse> GetAll([FromServices] IUserQueryHandler handler)            
+        {
+            return handler.GetAll();            
         }
     }
 }

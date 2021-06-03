@@ -12,12 +12,12 @@ namespace Api.Controllers
     public class AuthController : ControllerBase
     {        
         private readonly IUserRepository _repository;
-        private readonly IUserHandler _handler;
+        private readonly IUserCommandHandler _handler;
         private readonly TokenService _tokenService;
         private readonly EmailService _emailService;
         public AuthController(
             IUserRepository repository, 
-            IUserHandler handler, 
+            IUserCommandHandler handler, 
             TokenService tokenService, 
             EmailService emailService)
         {

@@ -3,11 +3,13 @@ using Domain.Utils;
 
 namespace Domain.Entities
 {
-    public class User: Notifiable
+    public class User : Notifiable
     {
-        public User(string username, string email, string password,
-        string role = "user", bool active = true,
-        bool emailConfirm = false)
+        public User() { }
+        public User(
+            string username, string email, string password,
+            string role = "user", bool active = true,
+            bool emailConfirm = false)
         {
             Username = username;
             Email = email;
@@ -17,8 +19,7 @@ namespace Domain.Entities
             EmailConfirm = emailConfirm;
 
             Validate();
-        }
-        public User() { }
+        }        
 
         public string Username { get; private set; }
         public string Email { get; private set; }
@@ -33,11 +34,11 @@ namespace Domain.Entities
 
         public void AddEmailToken() => EmailToken = Guid.NewGuid().ToString();
         public void EmailConfirmate() => EmailConfirm = true;
-        public void PasswordGenerate() => Password = PasswordGenerator.Generate();    
+        public void PasswordGenerate() => Password = PasswordGenerator.Generate();
         public void AddPassword(string password) => Password = password;
-        public void HideEmailToken() => EmailToken = string.Empty;     
-        public void Activate() => Active = true;       
-        public void Inactivate() => Active = false;        
+        public void HideEmailToken() => EmailToken = string.Empty;
+        public void Activate() => Active = true;
+        public void Inactivate() => Active = false;
         public void AddHash(string hash, string salt)
         {
             Password = hash;
@@ -53,7 +54,7 @@ namespace Domain.Entities
             Password = password;
             Validate();
         }
-        
+
 
         public void Validate()
         {

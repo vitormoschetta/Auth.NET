@@ -1,16 +1,15 @@
 using System;
-using Domain.Commands;
 using Domain.Contracts.Handlers;
 using Domain.Contracts.Repositories;
 using Domain.Entities;
 using Domain.Utils;
 
-namespace Domain.Handlers
+namespace Domain.Commands.Handlers
 {
-    public class UserHandler : Notifiable, IUserHandler
+    public class UserCommandHandler : Notifiable, IUserCommandHandler
     {
         private readonly IUserRepository _repository;
-        public UserHandler(IUserRepository repository)
+        public UserCommandHandler(IUserRepository repository)
         {
             _repository = repository;
         }
@@ -54,7 +53,7 @@ namespace Domain.Handlers
 
             // Add Hash and Salt
             var salt = SaltGenerator.Generate();
-            var hash = HashGenerator.Generate(user.Password, salt);                      
+            var hash = HashGenerator.Generate(user.Password, salt);
 
             user.AddHash(hash, Convert.ToBase64String(salt));
             user.AddEmailToken();
@@ -77,7 +76,7 @@ namespace Domain.Handlers
             _repository.EmailValidate(user);
 
             user.HidePassword();
-            
+
             return new CommandResult(true, "Email verificado com sucesso! ", user);
         }
 
@@ -86,7 +85,7 @@ namespace Domain.Handlers
             var user = _repository.GetByNameOrEmail(command.Username);
             if (user == null)
                 return new CommandResult(false, "Login inválido! ");
-            
+
             var salt_tabela = user.Salt;
             byte[] salt = Convert.FromBase64String(salt_tabela);
             var hashPassword = HashGenerator.Generate(command.Password, salt);
@@ -120,16 +119,15 @@ namespace Domain.Handlers
 
             // Add new Hash and Salt
             var salt = SaltGenerator.Generate();
-            var hash = HashGenerator.Generate(user.Password, salt);           
+            var hash = HashGenerator.Generate(user.Password, salt);
 
-            user.AddHash(hash, Convert.ToBase64String(salt));      
-            
+            user.AddHash(hash, Convert.ToBase64String(salt));
+
             _repository.ResetPassword(user);
 
             user.AddPassword(randomPassword);
 
             return new CommandResult(true, "Senha temporária enviada no e-mail! ", user);
         }
-
     }
 }
