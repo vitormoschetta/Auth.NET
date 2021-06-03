@@ -1,5 +1,5 @@
-ARG  DOTNET_VERSION=3.1
-FROM mcr.microsoft.com/dotnet/core/sdk:${DOTNET_VERSION} AS build
+ARG  DOTNET_VERSION=5.0
+FROM mcr.microsoft.com/dotnet/sdk:${DOTNET_VERSION} AS build
 
 #Variaveis de ambiente
 ARG Email=Email
